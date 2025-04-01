@@ -17,7 +17,13 @@ export default function HiddenTimer({ duration, onTimerEnd, isRunning }) {
       const endTime = Date.now()
       const elapsedMs = endTime - startTimeRef.current
       const elapsedFormatted = formatTime(elapsedMs)
-      triggerNotification(`That one was ${elapsedFormatted}`)
+      
+      // Trigger notification with enhanced message
+      triggerNotification(
+        `That flow session was ${elapsedFormatted}. A new one has already started...`, 
+        { sound: '/sounds/click.mp3' }
+      )
+      
       onTimerEnd(elapsedMs) // pass elapsed time back
     }, duration)
 
@@ -30,5 +36,12 @@ export default function HiddenTimer({ duration, onTimerEnd, isRunning }) {
 function formatTime(ms) {
   const minutes = Math.floor(ms / 60000)
   const seconds = Math.floor((ms % 60000) / 1000)
-  return `${minutes}:${seconds.toString().padStart(2, '0')} minutes`
+  
+  if (minutes === 0) {
+    return `${seconds} seconds`
+  } else if (minutes === 1) {
+    return `${minutes} minute ${seconds > 0 ? `and ${seconds} seconds` : ''}`
+  } else {
+    return `${minutes} minutes ${seconds > 0 ? `and ${seconds} seconds` : ''}`
+  }
 }

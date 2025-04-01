@@ -33,8 +33,8 @@ process.chdir(deployDir);
 // Determine the repository URL (with token if provided)
 const githubToken = process.env.GITHUB_TOKEN;
 const repoUrl = githubToken 
-  ? `https://${githubToken}@github.com/MiguelDiLalla/not-pomodoro-app.git`
-  : `https://github.com/MiguelDiLalla/not-pomodoro-app.git`;
+  ? `https://${githubToken}@github.com/MiguelDiLalla/Not_Pomodoro_App.git`
+  : `https://github.com/MiguelDiLalla/Not_Pomodoro_App.git`;
 
 try {
   execSync('git init', { stdio: 'inherit' });

@@ -14,7 +14,7 @@ const os = require('os');
 const fs = require('fs');
 
 // Configuration
-const GITHUB_REPO = 'MiguelDiLalla/not-pomodoro-app'; // Your GitHub username/repo
+const GITHUB_REPO = 'MiguelDiLalla/Not_Pomodoro_App'; // Updated to match actual case/naming
 const BRANCH = 'gh-pages';                            // Branch to deploy to
 const SOURCE_DIR = path.join(__dirname, 'dist');      // Directory with built files
 

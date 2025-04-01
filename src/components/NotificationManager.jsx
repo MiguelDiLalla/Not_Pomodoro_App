@@ -11,12 +11,38 @@ export default function NotificationManager() {
   return null
 }
 
-// Optional: export a utility you can use elsewhere
-export function triggerNotification(message) {
+// Export a utility you can use elsewhere with enhanced customization
+export function triggerNotification(message, options = {}) {
   if ('Notification' in window && Notification.permission === 'granted') {
-    new Notification('⏰ Time’s up!', {
+    // Vibration pattern for mobile devices if supported
+    const vibrationPattern = [100, 50, 100];
+    
+    // Configure the notification with default and custom options
+    const notification = new Notification('⏱️ FlowLoop', {
       body: message,
-      icon: '/not-pomodoro-app/icons/icon-192.png' // updated path for GitHub Pages
-    })
+      icon: './icons/icon-192.png',
+      badge: './icons/icon-192.png',
+      vibrate: vibrationPattern,
+      timestamp: Date.now(),
+      requireInteraction: false, // Auto-close after a while
+      ...options
+    });
+    
+    // Optional click handler
+    notification.onclick = () => {
+      window.focus();
+      notification.close();
+    };
+    
+    // Play a subtle sound if audio is provided
+    if (options.sound) {
+      const audio = new Audio(options.sound);
+      audio.volume = 0.4;
+      audio.play().catch(e => console.log('Audio play error:', e));
+    }
+    
+    return notification;
   }
+  
+  return null;
 }

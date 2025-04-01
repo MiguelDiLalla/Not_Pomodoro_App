@@ -4,12 +4,12 @@
     "description": "A weird little ADHD-friendly timer to trick yourself into tracking time.",
     "author": "Miguel Di Lalla",
     "license": "MIT",
-    "homepage": "https://MiguelDiLalla.github.io/not-pomodoro-app",
+    "homepage": "https://MiguelDiLalla.github.io/Not_Pomodoro_App",
     "scripts": {
       "dev": "vite",
       "build": "vite build",
       "preview": "vite preview",
-      "deploy": "gh-pages -d dist --maxBlobLength 20971520",
+      "deploy": "node deploy-simple.js",
       "deploy:custom": "node deploy.js",
       "deploy:simple": "node deploy-simple.js"
     },

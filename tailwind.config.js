@@ -8,7 +8,7 @@ export default {
       extend: {
         fontFamily: {
           sans: ['Lexend Deca', 'sans-serif'],
-          display: ['Montagu Slab', 'serif']
+          display: ['MontaguSlap', 'cursive']
         },
         animation: {
           blob: "blob 12s infinite"
@@ -25,4 +25,3 @@ export default {
     },
     plugins: []
   }
-  

@@ -29,6 +29,13 @@ fs.cpSync(path.join(__dirname, 'dist'), deployDir, { recursive: true });
 // Initialize git in the deployment directory
 console.log('Initializing git repository...');
 process.chdir(deployDir);
+
+// Determine the repository URL (with token if provided)
+const githubToken = process.env.GITHUB_TOKEN;
+const repoUrl = githubToken 
+  ? `https://${githubToken}@github.com/MiguelDiLalla/not-pomodoro-app.git`
+  : `https://github.com/MiguelDiLalla/not-pomodoro-app.git`;
+
 try {
   execSync('git init', { stdio: 'inherit' });
   execSync('git add .', { stdio: 'inherit' });
@@ -38,7 +45,7 @@ try {
   
   // Force push to the gh-pages branch
   console.log('Pushing to GitHub Pages...');
-  execSync('git push -f https://github.com/MiguelDiLalla/not-pomodoro-app.git HEAD:gh-pages', { stdio: 'inherit' });
+  execSync(`git push -f ${repoUrl} HEAD:gh-pages`, { stdio: 'inherit' });
   
   console.log('Successfully deployed!');
 } catch (error) {

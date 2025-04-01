@@ -1,11 +1,21 @@
 import React from 'react';
+import useAudio from '../hooks/useAudio';
 
 const ButtonGrid = ({ buttonValues = [], onButtonClick, mode = 'paused' }) => {
+  // Hook for button click sound
+  const { play: playClickSound } = useAudio('/sounds/click.mp3', { volume: 0.5, preload: 'auto' });
+  
   // Format minutes and seconds from milliseconds
   const formatTimeValue = (ms) => {
     const minutes = Math.floor(ms / 60000);
     const seconds = Math.floor((ms % 60000) / 1000);
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
+
+  // Handle button click with sound effect
+  const handleButtonClick = (value, index) => {
+    playClickSound();
+    onButtonClick(value, index);
   };
 
   return (
@@ -14,7 +24,7 @@ const ButtonGrid = ({ buttonValues = [], onButtonClick, mode = 'paused' }) => {
       {buttonValues.map((value, index) => (
         <button
           key={index}
-          onClick={() => onButtonClick(value, index)}
+          onClick={() => handleButtonClick(value, index)}
           disabled={mode !== 'running'}
           className={`w-full p-3 rounded-lg transition-all duration-300
             ${mode === 'running' 

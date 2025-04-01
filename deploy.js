@@ -1,26 +1,54 @@
-// Simple deploy script to handle long filenames
-const ghpages = require('gh-pages');
+// Simple deploy script that works around the ENAMETOOLONG error
+const { execSync } = require('child_process');
+const fs = require('fs');
 const path = require('path');
 
-ghpages.publish(
-  path.join(process.cwd(), 'dist'),
-  {
-    // Use GitHub token if available
-    repo: process.env.GITHUB_TOKEN 
-      ? `https://${process.env.GITHUB_TOKEN}@github.com/MiguelDiLalla/not-pomodoro-app.git` 
-      : undefined,
-    message: 'Auto-deployed with custom script',
-    silent: false,
-    // Add git arguments to handle long paths
-    git: 'git',
-    args: ['--max-buffer=20971520']
-  },
-  (err) => {
-    if (err) {
-      console.error('Deployment error:', err);
-      process.exit(1);
-    } else {
-      console.log('Successfully deployed!');
-    }
-  }
-);
+// Ensure we have a clean dist folder
+console.log('Building project...');
+try {
+  execSync('npm run build', { stdio: 'inherit' });
+} catch (error) {
+  console.error('Build failed:', error);
+  process.exit(1);
+}
+
+// Create a deployment folder to avoid long path issues
+const deployDir = path.join(__dirname, 'deploy-temp');
+console.log(`Creating temporary deployment directory: ${deployDir}`);
+
+// Clean or create the directory
+if (fs.existsSync(deployDir)) {
+  fs.rmSync(deployDir, { recursive: true, force: true });
+}
+fs.mkdirSync(deployDir);
+
+// Copy the dist folder to the deployment directory
+console.log('Copying build files...');
+fs.cpSync(path.join(__dirname, 'dist'), deployDir, { recursive: true });
+
+// Initialize git in the deployment directory
+console.log('Initializing git repository...');
+process.chdir(deployDir);
+try {
+  execSync('git init', { stdio: 'inherit' });
+  execSync('git add .', { stdio: 'inherit' });
+  execSync('git config --local user.email "auto-deploy@flowloop.app"', { stdio: 'inherit' });
+  execSync('git config --local user.name "FlowLoop Auto Deploy"', { stdio: 'inherit' });
+  execSync('git commit -m "Deploy FlowLoop app"', { stdio: 'inherit' });
+  
+  // Force push to the gh-pages branch
+  console.log('Pushing to GitHub Pages...');
+  execSync('git push -f https://github.com/MiguelDiLalla/not-pomodoro-app.git HEAD:gh-pages', { stdio: 'inherit' });
+  
+  console.log('Successfully deployed!');
+} catch (error) {
+  console.error('Deployment error:', error);
+  process.exit(1);
+} finally {
+  // Clean up - return to original directory
+  process.chdir(__dirname);
+  
+  // Optional: remove the temp directory when done
+  console.log('Cleaning up temporary files...');
+  fs.rmSync(deployDir, { recursive: true, force: true });
+}

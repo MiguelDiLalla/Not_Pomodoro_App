@@ -78,6 +78,17 @@ npm run build
 npm run deploy
 ```
 
+
+## ⚠️ Development Security Advisory
+
+As of version 1.0.0, this project uses `vite@5.x`, which depends on a vulnerable version of `esbuild`. This issue only affects the development server (`npm run dev`) and does **not** impact the production build.
+
+> Reference: [GitHub Advisory GHSA-67mh-4wv8-2f99](https://github.com/advisories/GHSA-67mh-4wv8-2f99)
+
+To upgrade safely in future versions, update to `vite@6.x` and review plugin compatibility.
+
+✅ Deployment to GitHub Pages and production usage remain secure.
+
 ---
 
 ## 📄 License

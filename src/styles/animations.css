@@ -1,0 +1,99 @@
+/* animations.css - Provides animation styles for the background blobs */
+
+.blob-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.6;
+  mix-blend-mode: lighten; /* Changed from screen to lighten for better gel-like effect */
+}
+
+.blob-1 {
+  width: 40vw;
+  height: 40vw;
+  left: -10vw;
+  top: 30%;
+  animation: blob-float-1 20s ease-in-out infinite alternate;
+}
+
+.blob-2 {
+  width: 35vw;
+  height: 35vw;
+  right: 10vw;
+  bottom: 20%;
+  animation: blob-float-2 24s ease-in-out infinite alternate-reverse;
+}
+
+/* Animations for paused state (default) */
+@keyframes blob-float-1 {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(25vw, -10vh) scale(1.1);
+  }
+  100% {
+    transform: translate(45vw, 5vh) scale(0.9);
+  }
+}
+
+@keyframes blob-float-2 {
+  0% {
+    transform: translate(0, 0) scale(0.9);
+  }
+  50% {
+    transform: translate(-15vw, 10vh) scale(1.1);
+  }
+  100% {
+    transform: translate(-35vw, -5vh) scale(1);
+  }
+}
+
+/* Different animations for running state */
+.blob-container[data-mode="running"] .blob-1 {
+  animation: blob-float-1-running 16s ease-in-out infinite alternate;
+}
+
+.blob-container[data-mode="running"] .blob-2 {
+  animation: blob-float-2-running 18s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes blob-float-1-running {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(30vw, -15vh) scale(1.2);
+  }
+  100% {
+    transform: translate(50vw, 10vh) scale(0.9);
+  }
+}
+
+@keyframes blob-float-2-running {
+  0% {
+    transform: translate(0, 0) scale(0.9);
+  }
+  50% {
+    transform: translate(-20vw, 15vh) scale(1.2);
+  }
+  100% {
+    transform: translate(-40vw, -10vh) scale(1);
+  }
+}
+
+/* Media query for smaller screens to adjust blob sizes */
+@media (max-width: 768px) {
+  .blob-1, .blob-2 {
+    width: 60vw;
+    height: 60vw;
+    filter: blur(40px);
+  }
+}

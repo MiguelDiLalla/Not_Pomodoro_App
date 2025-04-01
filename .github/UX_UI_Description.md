@@ -30,11 +30,50 @@ Each panel plays a specific role in guiding user focus and supporting the core g
 ## 🎨 Animated Background
 - File: `src/components/AnimatedBackground.jsx`
 - Styles: `src/styles/animations.css`
+- Role: Provides immersive motion backdrop with procedural styling.
+
+### ✨ Design Spec
+The animated background features:
+- A **teal base layer** (`teal-600` Tailwind tone)
+- Two **soft red blobs** (`red-400`) with blur and transparency
+- Blobs **translate slowly** and **interact visually** using `mix-blend-mode` and `filter: blur`
+- Movement direction and positioning are **responsive to viewport size**
+- Animations run in a loop, simulating a "metaball" or lava-lamp style motion
+
+```text
+┌──────────────────────────── Full-Screen Container ─────────────────────────────┐
+│                                                                                │
+│    [ Red Blob A ]    <-- animate left to right with slow drift                 │
+│                         blend softly with background and second blob          │
+│                                                                                │
+│                      [ Red Blob B ]     <-- counter-drift                      │
+│                                                                                │
+└────────────────────────────────────────────────────────────────────────────────┘
+```
+
+This animated layer sits behind all content and respects the full viewport size (`w-screen h-screen`).
+- File: `src/components/AnimatedBackground.jsx`
+- Styles: `src/styles/animations.css`
 - Role: Provides subtle, animated visuals behind the UI. Gives the app a dynamic and immersive feel.
 
 ---
 
 ## 📋 Title & Text Panel (Left)
+- File: `src/components/TitlePanel.jsx`
+- Role: Displays the app title, phase-specific messages, and motivational blurbs. Sets the tone for each session.
+
+### 🧩 Design Spec
+- Title uses `MontaguSlap`, styled with Tailwind class `font-title`
+- Subheadings and text use `Lexend Deca`, styled with `font-sans`
+- Panel is vertically centered, with left/right padding
+- Rounded edges, fits inside a column container (with `rounded-2xl`, `p-4`, etc.)
+
+```text
+┌────────────────────────────────────┐
+│   "FlowLoops"                     │   ← Large title (MontaguSlap)
+│   "Time is a game. Play it."      │   ← Subheading (Lexend Deca)
+└────────────────────────────────────┘
+```
 - File: `src/components/TitlePanel.jsx`
 - Role: Displays the app title, phase-specific messages, and motivational blurbs. Sets the tone for each session.
 
@@ -47,14 +86,62 @@ Each panel plays a specific role in guiding user focus and supporting the core g
   - `src/components/RunPauseButton.jsx`
 - Role: Main interactive zone with 8 mystery buttons. One is active (secret timer); others are clickable for timer resets. Central Run/Pause control included.
 
+### 🧩 Design Spec
+- All buttons are stacked vertically like an always-open **combo box**
+- Uses `flex-col` and equal spacing
+- Each button styled with `.mystery-button`, rounded, interactive hover/active states
+- Layout is fully centered and responsive
+
+```text
+┌────────────────────────────┐
+│ [ Button 1 ]               │
+│ [ Button 2 ]               │
+│ [ Button 3 ]               │
+│ [ Button 4 ]               │
+│ [ Button 5 ]               │
+│ [ Button 6 ]               │
+│ [ Button 7 ]               │
+│───────────────────────────│
+│ [ Run / Pause Button ]     │
+└────────────────────────────┘
+```
+- Files:
+  - `src/components/ButtonsPanel.jsx`
+  - `src/components/ButtonGrid.jsx`
+  - `src/components/RunPauseButton.jsx`
+- Role: Main interactive zone with 8 mystery buttons. One is active (secret timer); others are clickable for timer resets. Central Run/Pause control included.
+
 ---
 
 ## 📈 History Sidebar (Right)
 - File: `src/components/HistorySidebar.jsx`
 - Hook: `src/hooks/useHistoryLog.js`
-- Role: Displays session history (button clicks, timer triggers, total time). Slides in or reveals on hover.
+- Role: Displays session history (button clicks, timer triggers, total time). 
 
----
+### 🧭 Responsive Behavior
+| Device | Visibility | Position | Content |
+|--------|------------|----------|---------|
+| **Desktop** | Always visible | Right Panel | Full history log (bottom-aligned), total time at the bottom |
+| **Mobile** | Compact bar | Bottom nav-like element | Only shows total time + last entry summary |
+
+- Background color: same red tone as metaballs (`red-400`), blended softly
+- Layout: No scroll — content must **fit or clip**, always within `overflow-hidden`
+
+```text
+Desktop Layout:
+┌──────────────┐
+│ History Log  │   ← scrollable div (flex-col-reverse)
+│  ...         │
+│  Session #3  │
+│──────────────│
+│ Total Time:  │   ← fixed at bottom
+└──────────────┘
+
+Mobile Layout:
+┌────────────────────────── Bottom Bar ──────────────────────────┐
+│  Total Time: XX:XX  |  Last Event: "Paused at 11:42"           │
+└────────────────────────────────────────────────────────────────┘
+```
 
 ## 📊 Timer Logic & Notifications
 - Timer Engine: `src/utils/timer.js`
@@ -112,45 +199,45 @@ Each panel plays a specific role in guiding user focus and supporting the core g
 
 ## 🚧 Development Roadmap: Populating the Code
 
-To bring the FlowLoops interface and logic to life, follow this roadmap for building each placeholder file in order of dependency and UI visibility.
 
-### ✅ Phase 1: Foundation & Scaffolding
-1. **`main.jsx`** – Setup ReactDOM to render `<App />`
-2. **`App.jsx`** – Define three-column layout, import and render all panels
-3. **`index.css`** – Include Tailwind directives and global styles
-4. **`tailwind.config.js` + `vite.config.js`** – Confirm Tailwind and deployment settings
-5. **`index.html`** – Load fonts, metadata, and root container
+### ✅ Phase 1: Foundation & Scaffolding 
+1. **`main.jsx`** – Setup ReactDOM to render `<App />` ✔️
+2. **`App.jsx`** – Define three-column layout, import and render all panels ✔️
+3. **`index.css`** – Include Tailwind directives and global styles ✔️
+4. **`tailwind.config.js` + `vite.config.js`** – Confirm Tailwind and deployment settings ✔️
+5. **`index.html`** – Load fonts, metadata, and root container ✔️
+
 
 ---
 
-### 🖼️ Phase 2: Visual Layer
-6. **`AnimatedBackground.jsx`** – Add animated backdrop using utility classes
-7. **`animations.css`** – Define blur/motion styles (optional CSS keyframes)
+### 🖼️ Phase 2: Visual Layer 
+6. **`AnimatedBackground.jsx`** – Add animated backdrop using utility classes ✔️
+7. **`animations.css`** – Define blur/motion styles (optional CSS keyframes) ✔️
 
 ---
 
 ### 📋 Phase 3: Title Panel (Left)
-8. **`TitlePanel.jsx`** – Render heading, motivational subtitle, and props for dynamic state (e.g., session mode)
+8. **`TitlePanel.jsx`** – Render heading, motivational subtitle, and props for dynamic state (e.g., session mode) ✔️
 
 ---
 
 ### 🎛️ Phase 4: Button Panel (Center)
-9. **`ButtonsPanel.jsx`** – Render RunPauseButton and ButtonGrid in a flexbox/column layout
-10. **`RunPauseButton.jsx`** – Trigger `start`, `pause`, or `reset` via TimerContext
-11. **`ButtonGrid.jsx`** – Render 8 dynamic buttons; each sets a new mystery time via `TimerContext`
+9. **`ButtonsPanel.jsx`** – Render RunPauseButton and ButtonGrid in a flexbox/column layout ✔️
+10. **`RunPauseButton.jsx`** – Trigger `start`, `pause`, or `reset` via TimerContext ✔️
+11. **`ButtonGrid.jsx`** – Render 8 dynamic buttons; each sets a new mystery time via `TimerContext` ✔️
 
 ---
 
 ### 📈 Phase 5: History Panel (Right)
-12. **`useHistoryLog.js`** – Implement a custom hook to log timer events and button clicks
-13. **`HistorySidebar.jsx`** – Display logs from `useHistoryLog`; style with overflow and fade
+12. **`useHistoryLog.js`** – Implement a custom hook to log timer events and button clicks ✔️
+13. **`HistorySidebar.jsx`** – Display logs from `useHistoryLog`; style with overflow and fade ✔️
 
 ---
 
 ### ⏱️ Phase 6: Timer Mechanics & Notifications
-14. **`TimerContext.jsx`** – Build global timer context and provide state + handlers
-15. **`timer.js`** – Implement hidden countdown logic (start/stop/reset)
-16. **`NotificationManager.jsx`** – Trigger system notifications when timer ends
+14. **`TimerContext.jsx`** – Build global timer context and provide state + handlers ✔️
+15. **`timer.js`** – Implement hidden countdown logic (start/stop/reset) ✔️
+16. **`NotificationManager.jsx`** – Trigger system notifications when timer ends ✔️
 
 ---
 

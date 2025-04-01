@@ -8,9 +8,7 @@ const FILES_TO_CACHE = [
   '/not-pomodoro-app/manifest.json',
   '/not-pomodoro-app/sounds/click.wav',
   '/not-pomodoro-app/icons/icon-192.png',
-  '/not-pomodoro-app/icons/icon-512.png',
-  '/not-pomodoro-app/fonts/lexend-deca/lexend-deca.woff2',
-  '/not-pomodoro-app/fonts/montagu-slab/montagu-slab.woff2'
+  '/not-pomodoro-app/icons/icon-512.png'
 ];
 
 // Install event - cache the app shell
@@ -42,11 +40,6 @@ self.addEventListener('activate', (event) => {
 
 // Fetch event - serve cached content when offline
 self.addEventListener('fetch', (event) => {
-  // Skip non-HTTP(S) requests
-  if (!event.request.url.startsWith('http')) {
-    return;
-  }
-  
   event.respondWith(
     caches.match(event.request)
       .then((response) => {

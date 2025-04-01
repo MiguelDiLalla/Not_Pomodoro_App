@@ -168,6 +168,43 @@ To bring the FlowLoops interface and logic to life, follow this roadmap for buil
 
 ---
 
+## 🖼️ App Icons & PWA Requirements
+
+To support full installability and proper appearance across devices, FlowLoops requires two core icons:
+
+| Icon File | Size | Purpose |
+|-----------|------|---------|
+| `icon-192.png` | 192x192 px | Android launcher / notification icon |
+| `icon-512.png` | 512x512 px | Homescreen / install icon (PWA requirement) |
+
+### 📁 Storage Location
+Place both icon files in:
+```
+/public/icons/
+```
+
+### 🔧 Manifest Configuration Example
+Update `public/manifest.json` like this:
+```json
+"icons": [
+  {
+    "src": "/icons/icon-192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  },
+  {
+    "src": "/icons/icon-512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }
+],
+```
+
+You may also want to add a `favicon.ico` for tab visibility and include:
+```html
+<link rel="icon" href="/icons/icon-192.png" />
+```
+
 ## 📄 Foundational Files & Configs
 - `src/App.jsx` — Renders the 3 panels and layout structure.
 - `src/main.jsx` — Entry point, renders `<App />` into `#root`.

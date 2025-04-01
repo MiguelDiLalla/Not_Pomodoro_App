@@ -3,12 +3,12 @@ const CACHE_NAME = 'flowloops-cache-v1';
 
 // Files to cache for offline use
 const FILES_TO_CACHE = [
-  './',
-  './index.html',
-  './manifest.json',
-  './sounds/click.wav',
-  './icons/icon-192.png',
-  './icons/icon-512.png'
+  '/not-pomodoro-app/',
+  '/not-pomodoro-app/index.html',
+  '/not-pomodoro-app/manifest.json',
+  '/not-pomodoro-app/sounds/click.wav',
+  '/not-pomodoro-app/icons/icon-192.png',
+  '/not-pomodoro-app/icons/icon-512.png'
 ];
 
 // Install event - cache the app shell

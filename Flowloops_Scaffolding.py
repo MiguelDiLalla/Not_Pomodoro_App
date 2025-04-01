@@ -15,7 +15,7 @@ structure = {
     "public": [
         "index.html",
         "manifest.json",
-        "sounds/click.mp3"  # Placeholder, just creates the path
+        "sounds/click.wav"  # Placeholder, just creates the path
     ],
     "": [  # Root files
         "package.json",

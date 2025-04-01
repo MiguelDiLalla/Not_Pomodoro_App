@@ -298,7 +298,7 @@ You may also want to add a `favicon.ico` for tab visibility and include:
 - `src/index.css` — Tailwind base + custom styles.
 - `public/index.html` — Basic HTML template.
 - `public/manifest.json` — Metadata for installability.
-- `public/sounds/click.mp3` — Auditory feedback.
+- `public/sounds/click.wav` — Auditory feedback.
 - `tailwind.config.js` — Design tokens and custom theme.
 - `vite.config.js` — Configures base path for GitHub Pages.
 - `package.json` — Scripts, dependencies, and deployment setup.

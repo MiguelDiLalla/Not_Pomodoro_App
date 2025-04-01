@@ -84,7 +84,7 @@ not-pomodoro-app/
 ├── public/
 │   ├── index.html
 │   ├── manifest.json
-│   └── sounds/click.mp3
+│   └── sounds/click.wav
 ├── src/
 │   ├── App.jsx
 │   ├── main.jsx

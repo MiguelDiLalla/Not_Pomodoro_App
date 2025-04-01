@@ -8,7 +8,9 @@ const FILES_TO_CACHE = [
   '/not-pomodoro-app/manifest.json',
   '/not-pomodoro-app/sounds/click.wav',
   '/not-pomodoro-app/icons/icon-192.png',
-  '/not-pomodoro-app/icons/icon-512.png'
+  '/not-pomodoro-app/icons/icon-512.png',
+  '/not-pomodoro-app/fonts/lexend-deca/lexend-deca.woff2',
+  '/not-pomodoro-app/fonts/montagu-slab/montagu-slab.woff2'
 ];
 
 // Install event - cache the app shell

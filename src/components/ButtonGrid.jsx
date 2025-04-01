@@ -3,7 +3,7 @@ import useAudio from '../hooks/useAudio';
 
 const ButtonGrid = ({ buttonValues = [], onButtonClick, mode = 'paused' }) => {
   // Hook for button click sound
-  const { play: playClickSound } = useAudio('/sounds/click.mp3', { volume: 0.5, preload: 'auto' });
+  const { play: playClickSound } = useAudio('/sounds/click.wav', { volume: 0.5, preload: 'auto' });
   
   // Format minutes and seconds from milliseconds
   const formatTimeValue = (ms) => {

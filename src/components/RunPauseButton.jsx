@@ -3,7 +3,7 @@ import useAudio from '../hooks/useAudio';
 
 const RunPauseButton = ({ mode = 'paused', onClick }) => {
   // Hook for button click sound
-  const { play: playClickSound } = useAudio('/sounds/click.mp3', { volume: 0.4, preload: 'auto' });
+  const { play: playClickSound } = useAudio('/sounds/click.wav', { volume: 0.4, preload: 'auto' });
   
   // Handle button click with sound effect
   const handleClick = () => {

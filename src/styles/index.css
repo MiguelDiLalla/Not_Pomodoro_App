@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
     font-family: 'MontaguSlap';
     src: url('https://migueldilalla.github.io/fonts/MontaguSlap.woff2') format('woff2');
@@ -40,4 +44,3 @@
   .animation-delay-4000 {
     animation-delay: 4s;
   }
-  

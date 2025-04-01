@@ -1,5 +1,3 @@
-
-
 # Copilot Project Instructions: FlowLoop
 
 > A weird little timer game to trick you into tracking your time.
@@ -110,5 +108,6 @@ not-pomodoro-app/
 - Code should feel like a *small game engine*, not a typical timer app.
 - Style with Tailwind where possible — no external stylesheets.
 - Fonts can be loaded from Miguel’s personal web host or Google Fonts.
+- For detailed information about the UI layout, component relationships, and file dependencies, refer to the `.github/UX_UI_Description.md` document. This file provides a comprehensive breakdown of the visual organization, panel structure, and the role of each component in the FlowLoops user experience.
 
 ---

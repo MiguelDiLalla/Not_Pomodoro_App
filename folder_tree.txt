@@ -1,0 +1,26 @@
+Folder tree generated on: 2025-04-01 12:15:08
+Root: c:\Users\User\Projects_Unprotected\Not_Pomodoro_App
+Ignoring: .git/**
+
+│   ├── 📄 Flowloops_Scaffolding.py (11 hours ago)
+│   ├── 📄 GenerateFolderTree.py (4 days ago)
+│   ├── 📄 README.md (just now)
+│   ├── 📄 copilot-instructions.md (just now)
+│   ├── 📄 folder_tree.txt (just now)
+│   ├── 📄 package.json (just now)
+│   ├── 📄 tailwind.config.js (just now)
+│   ├── 📄 vite.config.js (just now)
+│   ├── 📁 .github (just now)
+│   └── 📄 copilot-instructions.md (11 hours ago)
+│   ├── 📁 public (just now)
+│   │   ├── 📄 index.html (just now)
+│   │   ├── 📄 manifest.json (just now)
+│   │   ├── 📁 sounds (just now)
+│   │   └── 📄 click.mp3 (just now)
+│   ├── 📁 src (just now)
+│   │   ├── 📄 App.jsx (just now)
+│   │   ├── 📄 main.jsx (just now)
+│   │   ├── 📁 components (just now)
+│   │   │   ├── 📄 ButtonGrid.jsx (just now)
+│   │   │   ├── 📄 NotificationManager.jsx (just now)
+│   │   └── 📄 RunPauseButton.jsx (just now)

@@ -1,0 +1,27 @@
+# Node.js dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# Vite cache
+.vite
+
+# TailwindCSS cache
+.tailwindcache
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+
+# Local IDE settings
+.vscode/
+.idea/

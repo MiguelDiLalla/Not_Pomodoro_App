@@ -10,7 +10,8 @@
       "build": "vite build",
       "preview": "vite preview",
       "deploy": "gh-pages -d dist --maxBlobLength 20971520",
-      "deploy:custom": "node deploy.js"
+      "deploy:custom": "node deploy.js",
+      "deploy:simple": "node deploy-simple.js"
     },
     "dependencies": {
       "react": "^18.2.0",

@@ -76,7 +76,7 @@ export default function App() {
       <main className="grid grid-rows-[auto_1fr] h-screen p-4">
         {/* Panel 1: Info */}
         <section className="mb-4 p-4 bg-black/20 rounded-2xl shadow-lg">
-          <h1 className="text-3xl font-display mb-2">Welcome to Chronolotto</h1>
+          <h1 className="text-3xl font-display mb-2">Welcome to FlowLoop</h1>
           <p className="text-base">
             This weird little app helps you stay focused by hiding time. Press <strong>Run</strong> to begin.
             You'll see 7 mystery buttons. One timer is ticking. You won't know which until it ends...

@@ -16,7 +16,7 @@ export function triggerNotification(message) {
   if ('Notification' in window && Notification.permission === 'granted') {
     new Notification('⏰ Time’s up!', {
       body: message,
-      icon: '/icons/icon-192.png' // optional, for PWA
+      icon: '/not-pomodoro-app/icons/icon-192.png' // updated path for GitHub Pages
     })
   }
 }
